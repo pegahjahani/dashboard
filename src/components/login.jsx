@@ -1,10 +1,14 @@
 import { useEffect, useState} from "react";
 import "../styles/loginPage.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [inputData, setInputData] = useState({ userName: '', password: '' })
-   const[loginData , setLoginData] = useState('')
+    const[loginData , setLoginData] = useState('')
+    // const [showError , setShowError] = useState(0)
+    let navigate = useNavigate()
+    let showError = 0
     
     const getData = async ()=>{
         const response = await axios.get('http://localhost:2000/login')
@@ -19,18 +23,20 @@ const Login = () => {
     const loginFunc = async () => {
        
         const id_loginData_fullfilled = (inputData?.password.trim().length > 0 && inputData?.userName.trim().length > 0)  
-        
         if (id_loginData_fullfilled) { 
            return loginData.filter((item)=>{
                 let userName = item.userName
                 const copmare_loginData_properties = (inputData?.userName === userName) && (inputData?.password === item?.password)
                 if (copmare_loginData_properties) {
                     console.log('hellooo');
-                   
-            
-                    setInputData({userName: '', password: ''})
+                    // setShowError(1)
+                    showError = 1
+                    navigate("/Dashboard")
                     return true
-                }
+                  }
+                   console.log(showError);
+                   setInputData({userName: '', password: ''})
+                  
             })
         } 
        
@@ -77,6 +83,16 @@ const Login = () => {
               login
               <img className="imageBtn" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlklEQVR4nO3VMQrCQBAF0BfPJFiIIEIuEXMLC6tASm8heKR4CcFWexG2jrPELYJ++N2yr1h2hn++kAVaHIPdo8oBWgw4BTskJJw+tdR5xYHcTAI6bEsCa9ywKwVEkFGgD/aMB1algAueWOYCkdS4jzz2JKD+cPlk4IDN7D5aP/tZ1OKasQ/eZ5scoErzPboPmtyF47fzAlImQMEO0uGBAAAAAElFTkSuQmCC" />
             </button>
+          </div>
+          <div className="messageBox">
+           <p className={showError===0 ?'displayNone' : 'displayBlock' }>
+            {
+              showError===1 ?
+              'success login !'
+              :
+              'not success login !'
+            }
+           </p>
           </div>
         </form>
       </div>
