@@ -4,17 +4,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .dashboardHead{
     width: 100%;
     height: 90px !important;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: fixed;
     left: 0;
     top: 0 !important;
-    border-bottom: 1px solid rgb(64, 63, 63);
+    border-bottom: 1px solid rgb(53, 53, 53);
     
 }
 .dashboardHead>.leftMenu, .dashboardHead>.rightMenu{
@@ -24,18 +25,23 @@
     align-items:center ;
 }
 .dashboardHead>.leftMenu{
+    /* border: 1px solid green; */
     justify-content: start !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 500px;
 
 }
 .dashboardHead>.rightMenu{
     justify-content: end;
 }
-.list{
-    width: 100%;
+.leftMenu>.list , .rightMenu>.list{
+    width: 100% !important;
+    height: 45px;
     display: flex;
     justify-content: start;
     align-items:center ;
-    flex-direction: row;
+    flex-direction: row !important;
     flex-wrap: nowrap !important;
     padding-left: 10px;
 
@@ -43,4 +49,34 @@
 .rightList{
     gap: 30px;
     padding-right: 20px;
+}
+.leftList{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.moodBtn{
+    height: 45px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.iconsMenuHeader{
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+}
+.moodItems{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+.profileImage{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }

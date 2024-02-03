@@ -3,6 +3,7 @@ import './App.css';
 import Login from './components/login';
 import axios from 'axios';
 import Dashboard from './pages/dashboard';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
